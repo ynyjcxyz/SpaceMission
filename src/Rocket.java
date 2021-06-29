@@ -1,47 +1,35 @@
-interface SpaceShip{
-    public boolean launch();
-    public boolean land();
-    public boolean canCarry(Object Item);
-    public int carry(Object Item);
-}
-public class Rocket implements SpaceShip{
-    int cost;
-    int LaunchTime;
-    int SelfWeight;
-    int MaxWeight;
-    int CargoLimit = MaxWeight - SelfWeight;
-    int CargoCarried;
-    double ExplosionFactor;
-    double CrashFactor;
-    double ChanceOfLaunchExplosion = ExplosionFactor * (CargoCarried/CargoLimit);
-    double ChanceOfLandingExplosion = CrashFactor * (CargoCarried/CargoLimit);
+public class Rocket implements SpaceShip {
+
+  int cost;
+  int launchTime;
+  int selfWeight;
+  int maxWeight;
+  int cargoLimit = maxWeight - selfWeight;
+  int cargoCarried;
+  double explosionFactor;
+  double crashFactor;
+  double chanceOfLaunchExplosion = explosionFactor * (cargoCarried / cargoLimit);
+  double chanceOfLandingExplosion = crashFactor * (cargoCarried / cargoLimit);
 
 
-    @Override
-    public boolean launch(){
-        return true;
-    }
+  @Override
+  public boolean launch() {
+    return true;
+  }
 
-    @Override
-    public boolean land() {
-        return true;
-    }
+  @Override
+  public boolean land() {
+    return true;
+  }
 
-    @Override
-    public boolean canCarry(Object Item) {
-        Item item = new Item();
-        if(item.weight < CargoLimit){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+  @Override
+  public boolean canCarry(Item item) {
+    return item.weight < cargoLimit;
+  }
 
-    @Override
-    public int carry(Object Item) {
-        Item item = new Item();
-        int CurrentWeight = SelfWeight + item.weight;
-        return CurrentWeight;
-    }
+  @Override
+  public int carry(Item item) {
+    int currentWeight = selfWeight + item.weight;
+    return currentWeight;
+  }
 }
