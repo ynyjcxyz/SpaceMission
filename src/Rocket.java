@@ -1,14 +1,10 @@
 public class Rocket implements SpaceShip {
-  int cost;
-  int launchTime;
-  int selfWeight;
+  long cost;
+  int weight;
   int maxWeight;
-  int cargoLimit = maxWeight - selfWeight;
-  int cargoCarried;
   double explosionFactor;
   double crashFactor;
-  double chanceOfLaunchExplosion = explosionFactor * (cargoCarried / cargoLimit);
-  double chanceOfLandingExplosion = crashFactor * (cargoCarried / cargoLimit);
+  int cargoWeight = 0;
 
 
   @Override
@@ -23,12 +19,12 @@ public class Rocket implements SpaceShip {
 
   @Override
   public boolean canCarry(Item item) {
-    return item.weight < cargoLimit;
+    return item.weight+cargoWeight <= maxWeight;
   }
 
   @Override
   public int carry(Item item) {
-    int currentWeight = selfWeight + item.weight;
-    return currentWeight;
+    cargoWeight += item.weight;
+    return cargoWeight;
   }
 }
