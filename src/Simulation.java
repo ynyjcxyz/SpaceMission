@@ -11,11 +11,11 @@ public class Simulation {
     ArrayList<Item> loadedItem = new ArrayList<Item>();
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      String name = line.substring(0, line.indexOf("="));
-      String kgAString = line.substring(name.length());
-      int kgAsInt = Integer.parseInt(kgAString);
-      int tonne = kgAsInt / 1000;
-      Item item = new Item(name, tonne);
+      String name = line.split("=")[0];;
+      //String kgAString = line.substring(name.length());
+      int kgAsInt = Integer.parseInt(line.split("=")[1]);
+      //int tonne = kgAsInt / 1000;
+      Item item = new Item(name, kgAsInt);
       loadedItem.add(item);
     }
     return loadedItem;

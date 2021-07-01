@@ -1,23 +1,24 @@
 public class U2 extends Rocket {
     U2() {
-        this.cost = 120000000;
-        this.weight = 18;
-        this.maxWeight = 29;
-        this.explosionFactor = 0.04;
-        this.crashFactor = 0.08;
+        cost = 120;
+        weight = 18000;
+        maxWeight = 29000;
+        launchExplosion  = 0.00;
+        landingCrash  = 0.00;
+        currentWeight = weight;
     }
 
     @Override
     public boolean launch(){
-        double chanceOfExplosion = this.explosionFactor * (this.cargoWeight/this.maxWeight);
-        double chanceRandom = Math.random();
-        return chanceOfExplosion < chanceRandom;
+        int random = (int)(Math.random()*100 +1);
+        this.launchExplosion = 4.0 * (this.currentWeight - this.weight) / (this.maxWeight - this.weight);
+        return this.launchExplosion <= random;
     }
 
     @Override
     public boolean land(){
-        double chanceOfCrash = this.crashFactor * (this.cargoWeight/this.maxWeight);
-        double chanceRandom = Math.random();
-        return chanceOfCrash < chanceRandom;
+        int random = (int)(Math.random()*100 +1);
+        this.launchExplosion = 8.0 * (this.currentWeight - this.weight) / (this.maxWeight - this.weight);
+        return this.launchExplosion <= random;
     }
 }
