@@ -1,23 +1,24 @@
 public class U1 extends Rocket{
-    U1() {
-        this.cost = 100000000;
-        this.weight = 10;
-        this.maxWeight = 18;
-        this.explosionFactor = 0.05;
-        this.crashFactor = 0.01;
+    public U1() {
+        cost = 100;
+        weight = 10000;
+        maxWeight = 18000;
+        launchExplosion  = 0.00;
+        landingCrash  = 0.00;
+        currentWeight = weight;
     }
 
     @Override
     public boolean launch(){
-        double chanceOfExplosion = this.explosionFactor * (this.cargoWeight/this.maxWeight);
-        double chanceRandom = Math.random();
-        return chanceOfExplosion < chanceRandom;
+        int random = (int)(Math.random()*100 +1);
+        this.launchExplosion = 5.0 * (this.currentWeight - this.weight) / (this.maxWeight - this.weight);
+        return this.launchExplosion <= random;
     }
 
     @Override
     public boolean land(){
-        double chanceOfCrash = this.crashFactor * (this.cargoWeight/this.maxWeight);
-        double chanceRandom = Math.random();
-        return chanceOfCrash < chanceRandom;
+        int random = (int)(Math.random()*100 +1);
+        this.landingCrash = 1.0 * (this.currentWeight - this.weight) / (this.maxWeight - this.weight);
+        return this.landingCrash <= random;
     }
 }
