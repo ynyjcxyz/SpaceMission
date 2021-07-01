@@ -1,17 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Simulation {
 
   public ArrayList<Item> loadItems(File file) throws FileNotFoundException {
     Scanner scanner = new Scanner(file);
-    ArrayList<Item> loadedItem = new ArrayList<Item>();
+    ArrayList<Item> loadedItem = new ArrayList<>();
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      String name = line.split("=")[0];;
+      String name = line.split("=")[0];
       //String kgAString = line.substring(name.length());
       int kgAsInt = Integer.parseInt(line.split("=")[1]);
       //int tonne = kgAsInt / 1000;
@@ -22,7 +21,7 @@ public class Simulation {
   }
 
   public ArrayList<Rocket> loadU1(ArrayList<Item> loadedItem){
-    ArrayList<Rocket> u1Rockets = new ArrayList<Rocket>();
+    ArrayList<Rocket> u1Rockets = new ArrayList<>();
     Rocket newU1 = new U1();
     for(Item item: loadedItem){
       if(newU1.canCarry(item)){
@@ -37,7 +36,7 @@ public class Simulation {
   }
 
   public ArrayList<Rocket> loadU2(ArrayList<Item> loadedItem){
-    ArrayList<Rocket> u2Rockets = new ArrayList<Rocket>();
+    ArrayList<Rocket> u2Rockets = new ArrayList<>();
     Rocket newU2 = new U2();
     for(Item item: loadedItem){
       if(newU2.canCarry(item)){
