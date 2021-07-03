@@ -10,10 +10,9 @@ public class Simulation {
     ArrayList<Item> loadedItem = new ArrayList<>();
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      String name = line.split("=")[0];
-      //String kgAString = line.substring(name.length());
-      int kgAsInt = Integer.parseInt(line.split("=")[1]);
-      //int tonne = kgAsInt / 1000;
+      String[] split = line.split("=");
+      String name = split[0];
+      int kgAsInt = Integer.parseInt(split[1]);
       Item item = new Item(name, kgAsInt);
       loadedItem.add(item);
     }
